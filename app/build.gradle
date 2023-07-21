@@ -1,0 +1,115 @@
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
+apply plugin: 'com.android.application'
+apply plugin: 'com.jaredsburrows.license'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
+
+/*
+ * To update licenses, run:
+ * - cd [project location]
+ * - ./gradlew licenseReleaseReport
+ */
+licenseReport {
+    generateHtmlReport = true
+    generateJsonReport = false
+
+    // These options are ignored for Java projects
+    copyHtmlReportToAssets = true
+    copyJsonReportToAssets = false
+}
+
+android {
+    compileSdkVersion 33
+    defaultConfig {
+        applicationId "com.sherdle.universal"
+        minSdkVersion 21
+        targetSdkVersion 33
+        multiDexEnabled true
+        versionCode 1
+        versionName "1.0"
+        compileOptions {
+            sourceCompatibility 1.8
+            targetCompatibility 1.8
+        }
+    }
+    signingConfigs {
+        release {
+            storeFile file("keystore.jks")
+            storePassword "e8Qypdjjxt7S2f"
+            keyAlias "keystore"
+            keyPassword "e8Qypdjjxt7S2f"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.release
+            manifestPlaceholders += [crashlyticsEnabled:"true"]
+        }
+        debug {
+            manifestPlaceholders += [crashlyticsEnabled:"false"]
+        }
+    }
+    dexOptions {
+        jumboMode true
+    }
+    namespace 'com.sherdle.universal'
+}
+
+
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+    maven {
+        url "https://jitpack.io"
+    }
+    mavenCentral()
+}
+
+dependencies {
+    implementation platform('com.google.firebase:firebase-bom:29.3.0')
+
+    implementation 'cz.msebera.android:httpclient:4.5.8' //Audio (soundcloud)
+    implementation 'com.devbrackets.android:exomedia:4.3.0' //TV
+    implementation 'com.google.android.exoplayer:exoplayer:2.9.6' //TV & Radio
+    implementation 'com.cleveroad:audiovisualization:1.0.1' //Radio
+    implementation 'com.google.code.gson:gson:2.8.6' //WC
+    implementation 'com.squareup.okhttp3:okhttp:3.12.1' //WC
+    implementation 'org.jsoup:jsoup:1.8.3'
+    implementation 'com.onesignal:OneSignal:[4.0.0, 4.99.99]'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.duolingo.open:rtl-viewpager:1.0.2'
+    implementation 'com.github.chrisbanes:PhotoView:1.3.0'
+    implementation 'com.github.ed-george:AndroidVimeoExtractor:1.2.1'
+
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.multidex:multidex-instrumentation:2.0.0'
+    implementation 'androidx.exifinterface:exifinterface:1.3.3'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.legacy:legacy-support-core-utils:1.0.0'
+    implementation 'androidx.media:media:1.5.0'
+
+    implementation 'com.google.maps.android:android-maps-utils:0.5'
+
+//  implementation 'com.google.android.gms:play-services-ads:22.0.0'
+//  implementation 'com.google.firebase:firebase-ads:22.0.0'
+    implementation "com.google.android.gms:play-services-maps:18.0.2"
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation "com.android.billingclient:billing:4.1.0"
+
+   
+    implementation 'com.google.firebase:firebase-analytics:20.1.2'
+    implementation 'com.google.firebase:firebase-crashlytics:18.2.9'
+    implementation 'com.google.firebase:firebase-messaging:23.0.2'
+    implementation 'androidx.work:work-runtime:2.7.1'
+
+    implementation files('libs/YouTubeAndroidPlayerApi.jar')
+    implementation 'androidx.fragment:fragment:1.4.1'
+    implementation 'androidx.core:core-splashscreen:1.0.0-alpha01'
+}
