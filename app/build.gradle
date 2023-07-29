@@ -27,9 +27,13 @@ android {
         multiDexEnabled true
         versionCode 1
         versionName "1.0"
-        compileOptions {
-            sourceCompatibility 1.8
-            targetCompatibility 1.8
+        compileOptions 
+        {
+
+     sourceCompatibility = JavaVersion.VERSION_1_8
+     targetCompatibility = JavaVersion.VERSION_1_8
+          //  sourceCompatibility 1.8
+          //  targetCompatibility 1.8
         }
     }
     signingConfigs {
@@ -112,4 +116,7 @@ dependencies {
     implementation files('libs/YouTubeAndroidPlayerApi.jar')
     implementation 'androidx.fragment:fragment:1.4.1'
     implementation 'androidx.core:core-splashscreen:1.0.0-alpha01'
+
+
+   implementation 'com.applovin:applovin-sdk:+'
 }

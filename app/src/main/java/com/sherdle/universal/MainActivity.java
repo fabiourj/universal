@@ -1,10 +1,14 @@
 package com.sherdle.universal;
 
 ///////////////////////////////////////////////////////
+
+
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.io.IOException;
 import androidx.core.splashscreen.SplashScreen;
+import com.sherdle.universal.AdConfig;
+
 
 ///////////////////////////////////////////////////////
 import android.annotation.SuppressLint;
@@ -161,7 +165,9 @@ public class MainActivity extends AppCompatActivity implements MenuItemCallback,
         } else {
             setContentView(R.layout.activity_main);
         }
-
+////////////////////////////////////////////////////////////////
+  adConfig = AdConfig.getInstance();
+///////////////////////////////////////////////////////////////////
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 

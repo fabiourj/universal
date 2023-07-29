@@ -151,7 +151,10 @@
             android:name="com.google.firebase.provider.FirebaseInitProvider"
             android:exported="false"
             tools:node="remove"/>
-
+            
+<!-- APPLOVIN -->
+        <meta-data  android:name="applovin.sdk.key"  android:value="YOUR_SDK_KEY" />
+<!-- APPLOVIN -->
 
     </application>
 

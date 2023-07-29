@@ -22,17 +22,18 @@ buildscript {
         classpath 'com.jaredsburrows:gradle-license-plugin:0.8.80'
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.8.1'
         classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.14.0, 0.99.99]'
-
+/////////////////////////////////////////////////////////////////////////////////////////
+        classpath "com.applovin.quality:AppLovinQualityServiceGradlePlugin:+"
+/////////////////////////////////////////////////////////////////////////////////////////
     }
     repositories {
         google()
         mavenCentral()
-        maven {
-            url 'https://plugins.gradle.org/m2/'
-        }
-        maven {
-            url 'https://maven.google.com/'
-        }
+        maven {        url 'https://plugins.gradle.org/m2/'  }
+        maven {        url 'https://maven.google.com/'       }
+/////////////////////////////////////////////////////////////////////////////////////////      
+        maven { url 'https://artifacts.applovin.com/android' }
+/////////////////////////////////////////////////////////////////////////////////////////        
     }
 }
 
