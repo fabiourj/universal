@@ -10,7 +10,7 @@ import android.os.AsyncTask;
 
 public class AdConfig {
     private static AdConfig instance;
-
+    private JSONObject adConfig;
     private String bannerAd;
     private String interstitialAd;
     private Map<String, String> admobIds;
@@ -18,7 +18,10 @@ public class AdConfig {
     private Map<String, String> adcolonyIds;
     private String ironsourceAppId;
 
-    private AdConfig() {
+   private AdConfig(Context context) {
+        // Carregar o arquivo de configuração de anúncios
+        this.adConfig = ConfigParser.getInstance(context).getAdConfig();
+        initializeAdNetworks(context);
     }
 
     public static AdConfig getInstance() {
@@ -28,8 +31,9 @@ public class AdConfig {
         return instance;
     }
 
-    // Adicione getters e setters para cada campo aqui
-    // ...
+
+
+    
 
     public void initializeAds(Context context) {
         // Aqui você pode adicionar o código para inicializar as redes de anúncios
