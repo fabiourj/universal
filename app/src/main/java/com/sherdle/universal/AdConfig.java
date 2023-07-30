@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.os.AsyncTask;
 import org.json.JSONObject;
 import java.util.Map;
+import com.sherdle.universal.ConfigParser; 
 
 public class AdConfig {
     private static AdConfig instance;
@@ -30,12 +31,13 @@ public class AdConfig {
         initializeAdNetworks(context);
     }
 
-    public static AdConfig getInstance() {
-        if (instance == null) {
-            instance = new AdConfig();
-        }
-        return instance;
+public static synchronized AdConfig getInstance(Context context) {
+    if (instance == null) {
+        instance = new AdConfig(context.getApplicationContext());
     }
+    return instance;
+}
+
 
  public static synchronized AdConfig getInstance(Context context) {
         if (instance == null) {

@@ -51,6 +51,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import com.sherdle.universal.AdConfig;
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
@@ -216,14 +217,7 @@ AdConfig.getInstance().setAdcolonyIds(adConfig.has("Adcolony") ? getAdIds(adConf
         return null;
     }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-private static ConfigParser instance;
 
-public static ConfigParser getInstance(Context context) {
-    if (instance == null) {
-        instance = new ConfigParser(context);
-    }
-    return instance;
-}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
