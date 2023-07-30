@@ -101,7 +101,7 @@ public class ConfigParser extends AsyncTask<Void, Void, Void> {
 
 /////////Obter ids das redes de anuncios/////////////////////////////////////////////////////////
 
-JSONObject adConfig = jsonMenu.get("AdConfig");
+JSONObject adConfig = jsonMenu.getJSONObject("AdConfig");
 AdConfig.getInstance().setBannerAd(adConfig.has("bannerAd") ? adConfig.getString("bannerAd") : null);
 AdConfig.getInstance().setInterstitialAd(adConfig.has("interstitialAd") ? adConfig.getString("interstitialAd") : null);
 AdConfig.getInstance().setAdmobIds(adConfig.has("Admob") ? getAdIds(adConfig.getJSONObject("Admob")) : null);
