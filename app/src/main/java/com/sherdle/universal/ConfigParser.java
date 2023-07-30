@@ -97,20 +97,13 @@ public class ConfigParser extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... args) {
 
+ 
+
         if (jsonMenu == null)
         try {
 
-/////////Obter ids das redes de anuncios/////////////////////////////////////////////////////////
-JSONObject adConfig = jsonMenu.getJSONObject("AdConfig");
-AdConfig.getInstance().setBannerAd(adConfig.has("bannerAd") ? getAdIds(adConfig.getJSONObject("bannerAd")) : null);
-AdConfig.getInstance().setInterstitialAd(adConfig.has("interstitialAd") ? getAdIds(adConfig.getJSONObject("interstitialAd")) : null);
-AdConfig.getInstance().setIronsourceAppId(adConfig.has("Ironsource") ? getAdIds(adConfig.getJSONObject("Ironsource")) : null);
-AdConfig.getInstance().setAdmobIds(adConfig.has("Admob") ? getAdIds(adConfig.getJSONObject("Admob")) : null);
-AdConfig.getInstance().setApplovinMaxIds(adConfig.has("Applovin MAX") ? getAdIds(adConfig.getJSONObject("Applovin MAX")) : null);
-AdConfig.getInstance().setAdcolonyIds(adConfig.has("Adcolony") ? getAdIds(adConfig.getJSONObject("Adcolony")) : null);
-
-/////////Obter ids das redes de anuncios/////////////////////////////////////////////////////////
-
+   
+  
 
             //Get the JSON
             if (sourceLocation.contains("http")) {
@@ -333,7 +326,7 @@ private boolean isValidJson(String json) {
     }
     return true;
 }
-
+/*
 private Map<String, String> getAdIds(JSONObject jsonObject) throws JSONException {
     Map<String, String> adIds = new HashMap<>();
     Iterator<String> keys = jsonObject.keys();
@@ -343,7 +336,7 @@ private Map<String, String> getAdIds(JSONObject jsonObject) throws JSONException
     }
     return adIds;
 }
-
+*/
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 

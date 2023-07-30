@@ -8,47 +8,44 @@ import android.content.res.Resources;
 import android.os.AsyncTask;
 import org.json.JSONObject;
 import java.util.Map;
-import com.sherdle.universal.ConfigParser; 
 
-public class AdConfig {
-    private static AdConfig instance;
-    private JSONObject adConfig;
-    private Map<String, String> bannerAd;
-    private Map<String, String> interstitialAd;
-    private Map<String, String> admobIds;
-    private Map<String, String> applovinMaxIds;
-    private Map<String, String> adcolonyIds;
-    private Map<String, String> ironsourceAppId;
+
+public class AdsSelect {
+    private static AdsSelect instance;
+    private JSONObject AdsSelect;
+    private String bannerAd;
+    private String interstitialAd;
+    private String Inmobi;
+    private String applovinMaxIds;
+    private String adcolonyIds;
+    private String IronsourceAppId;
 
 //////////////////////////////////////////////////////////////////////////////
 
 
 ///////////////////////////////////////////////////////////////////////////////    
 
-   private AdConfig(Context context) {
-        // Carregar o arquivo de configuração de anúncios
-        this.adConfig = ConfigParser.getInstance(context).getAdConfig();
-        initializeAdNetworks(context);
+   private AdsSelect(Context context) {
+        // Carregar o arquivo de configuração de anúncios ads.json
+      
+        
     }
 
-public static synchronized AdConfig getInstance(Context context) {
+public static synchronized AdsSelect getInstance(Context context) {
     if (instance == null) {
-        instance = new AdConfig(context.getApplicationContext());
+        instance = new AdsSelect(context.getApplicationContext());
     }
     return instance;
 }
 
 
- public static synchronized AdConfig getInstance(Context context) {
+ public static synchronized AdsSelect getInstance(Context context) {
         if (instance == null) {
-            instance = new AdConfig(context);
+            instance = new AdsSelect(context);
         }
         return instance;
     }
-
-
-    public void initializeAdNetworks(Context context) {
-    // Adicione aqui o código para inicializar as redes de anúncios
+   
 }
 
     
@@ -58,7 +55,7 @@ public static synchronized AdConfig getInstance(Context context) {
         // Você pode usar os getters para obter as informações da rede de anúncios
         // Por exemplo:
         switch (getBannerAd()) {
-            case "Admob":
+            case "Inmobi":
                 // Add initialization code for Admob banner ad
                 break;
             case "Applovin MAX":
@@ -74,12 +71,12 @@ public static synchronized AdConfig getInstance(Context context) {
         // ...
     }
 
-    public void showBannerAd(AdView adView) {
+    public void showBannerAd() {
         // Aqui você pode adicionar o código para exibir os anúncios de banner
         // Você pode usar os getters para obter as informações da rede de anúncios
         // Por exemplo:
         switch (getBannerAd()) {
-            case "Admob":
+            case "Inmobi":
                 // Add code to show Admob banner ad
                 break;
             case "Applovin MAX":
@@ -95,12 +92,12 @@ public static synchronized AdConfig getInstance(Context context) {
         // ...
     }
 
-    public void showInterstitialAd(InterstitialAd interstitialAd) {
+    public void showInterstitialAd() {
         // Aqui você pode adicionar o código para exibir os anúncios intersticiais
         // Você pode usar os getters para obter as informações da rede de anúncios
         // Por exemplo:
         switch (getInterstitialAd()) {
-            case "Admob":
+            case "Inmobi":
                 // Add code to show Admob interstitial ad
                 break;
             case "Applovin MAX":
@@ -121,27 +118,27 @@ public static synchronized AdConfig getInstance(Context context) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-public void setBannerAd(Map<String, String> bannerAd) {  
+public void setBannerAd(StringbannerAd) {  
     this.bannerAd = bannerAd;
 }
 
-public void setInterstitialAd(Map<String, String> interstitialAd) {
+public void setInterstitialAd(String interstitialAd) {
     this.interstitialAd = interstitialAd;
 }
 
-public void setAdmobIds(Map<String, String> admobIds) {
-    this.admobIds = admobIds;
+public void setInmobi(String Inmobi) {
+    this.Inmobi = Inmobi;
 }
 
-public void setApplovinMaxIds (Map<String, String> applovinMaxIds) {
+public void setApplovinMaxIds (String applovinMaxIds) {
     this.applovinMaxIds = applovinMaxIds;
 }
 
-public void setAdcolonyIds(Map<String, String> adcolonyIds) {
+public void setAdcolonyIds(String adcolonyIds) {
     this.adcolonyIds = adcolonyIds;
 }
 
-public void setIronsourceAppId(Map<String, String> setIronsourceAppId) {
+public void setIronsourceAppId(String setIronsourceAppId) {
     this.setIronsourceAppId = IronsourceAppId;
 }
 
