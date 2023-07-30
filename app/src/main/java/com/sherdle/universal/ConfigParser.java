@@ -94,13 +94,13 @@ public class ConfigParser extends AsyncTask<Void, Void, Void> {
         try {
 
 /////////Obter ids das redes de anuncios/////////////////////////////////////////////////////////
-  JSONObject adConfig = jsonMenu.getJSONObject("AdConfig");
-            AdConfig.getInstance().setBannerAd(adConfig.has("bannerAd") ? adConfig.getString("bannerAd") : null);
-            AdConfig.getInstance().setInterstitialAd(adConfig.has("interstitialAd") ? adConfig.getString("interstitialAd") : null);
-            AdConfig.getInstance().setAdmobIds(adConfig.has("Admob") ? getAdIds(adConfig.getJSONObject("Admob")) : null);
-            AdConfig.getInstance().setApplovinMaxIds(adConfig.has("Applovin MAX") ? getAdIds(adConfig.getJSONObject("Applovin MAX")) : null);
-            AdConfig.getInstance().setAdcolonyIds(adConfig.has("Adcolony") ? getAdIds(adConfig.getJSONObject("Adcolony")) : null);
-            AdConfig.getInstance().setIronsourceAppId(adConfig.has("Ironsource") ? adConfig.getJSONObject("Ironsource").getString("appId") : null);
+JSONObject adConfig = jsonMenu.getJSONObject(jsonMenu.getInt("AdConfig"));
+AdConfig.getInstance(context).setBannerAd(adConfig.has("bannerAd") ? adConfig.getString("bannerAd") : null);
+AdConfig.getInstance(context).setInterstitialAd(adConfig.has("interstitialAd") ? adConfig.getString("interstitialAd") : null);
+AdConfig.getInstance(context).setAdmobIds(adConfig.has("Admob") ? getAdIds(adConfig.getJSONObject("Admob")) : null);
+AdConfig.getInstance(context).setApplovinMaxIds(adConfig.has("Applovin MAX") ? getAdIds(adConfig.getJSONObject("Applovin MAX")) : null);
+AdConfig.getInstance(context).setAdcolonyIds(adConfig.has("Adcolony") ? getAdIds(adConfig.getJSONObject("Adcolony")) : null);
+AdConfig.getInstance(context).setIronsourceAppId(adConfig.has("Ironsource") ? adConfig.getJSONObject("Ironsource").getString("appId") : null);
 /////////Obter ids das redes de anuncios/////////////////////////////////////////////////////////
 
 
