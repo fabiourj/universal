@@ -46,6 +46,12 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+/////////////////////////////////////////////////////////////////////////////////////////////
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
  * This file is part of the Universal template
@@ -94,6 +100,7 @@ public class ConfigParser extends AsyncTask<Void, Void, Void> {
         try {
 
 /////////Obter ids das redes de anuncios/////////////////////////////////////////////////////////
+fetchJsonMenu();
 JSONObject adConfig = jsonMenu.getJSONObject("AdConfig");
 AdConfig.getInstance().setBannerAd(adConfig.has("bannerAd") ? adConfig.getString("bannerAd") : null);
 AdConfig.getInstance().setInterstitialAd(adConfig.has("interstitialAd") ? adConfig.getString("interstitialAd") : null);
@@ -208,6 +215,17 @@ AdConfig.getInstance().setIronsourceAppId(adConfig.has("Ironsource") ? adConfig.
 
         return null;
     }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+private static ConfigParser instance;
+
+public static ConfigParser getInstance(Context context) {
+    if (instance == null) {
+        instance = new ConfigParser(context);
+    }
+    return instance;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
     public static NavItem navItemFromJSON(Context context, JSONObject jsonTab) throws JSONException{
         String tabTitle = jsonTab.getString("title");
@@ -298,7 +316,6 @@ AdConfig.getInstance().setIronsourceAppId(adConfig.has("Ironsource") ? adConfig.
         void configLoaded(boolean success);
     }
 
-
     public void saveJSONToCache(String json){
         // Instantiate a JSON object from the request response
         // Save the JSONObject
@@ -309,7 +326,7 @@ AdConfig.getInstance().setIronsourceAppId(adConfig.has("Ironsource") ? adConfig.
         }
     }
 
-//////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 private boolean isValidJson(String json) {
     try {
         new JSONObject(json);
@@ -333,7 +350,7 @@ private Map<String, String> getAdIds(JSONObject jsonObject) throws JSONException
     return adIds;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
     private JSONArray getJSONFromCache(){

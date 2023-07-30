@@ -167,9 +167,7 @@ private AdConfig adConfig;
         } else {
             setContentView(R.layout.activity_main);
         }
-////////////////////////////////////////////////////////////////
-  adConfig = AdConfig.getInstance();
-///////////////////////////////////////////////////////////////////
+
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
@@ -207,7 +205,9 @@ private AdConfig adConfig;
 
         tabLayout.setupWithViewPager(viewPager);
   ////////////////////////////////////////////////////////////////////////////////////////////////
-
+////////////////////////////////////////////////////////////////
+  adConfig = AdConfig.getInstance();
+///////////////////////////////////////////////////////////////////
     if (!useTabletMenu()) {
         drawer.setStatusBarBackgroundColor(
                 ThemeUtils.getPrimaryDarkColor(this));

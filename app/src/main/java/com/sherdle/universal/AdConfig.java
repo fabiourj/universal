@@ -31,8 +31,18 @@ public class AdConfig {
         }
         return instance;
     }
+    
+ public static synchronized AdConfig getInstance(Context context) {
+        if (instance == null) {
+            instance = new AdConfig(context);
+        }
+        return instance;
+    }
 
 
+    public void initializeAdNetworks(Context context) {
+    // Adicione aqui o código para inicializar as redes de anúncios
+}
 
     
 
@@ -98,4 +108,37 @@ public class AdConfig {
         }
         // ...
     }
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+public void setBannerAd(String bannerAd) {  
+    this.bannerAd = bannerAd;
+}
+
+public void setInterstitialAd(String interstitialAd) {
+    this.interstitialAd = interstitialAd;
+}
+
+public void setAdmobIds(String admobIds) {
+    this.admobIds = admobIds;
+}
+
+public void setApplovinMaxIds (String applovinMaxIds) {
+    this.applovinMaxIds = applovinMaxIds;
+}
+
+public void setAdcolonyIds(String adcolonyIds) {
+    this.adcolonyIds = adcolonyIds;
+}
+
+public void setIronsourceAppId(String setIronsourceAppId) {
+    this.setIronsourceAppId = setIronsourceAppId;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 }
