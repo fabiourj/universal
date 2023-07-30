@@ -6,13 +6,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.AsyncTask;
-
+import org.json.JSONObject;
+import java.util.Map;
 
 public class AdConfig {
     private static AdConfig instance;
     private JSONObject adConfig;
-    private String bannerAd;
-    private String interstitialAd;
+  private String bannerAd;
+  private String interstitialAd;
     private Map<String, String> admobIds;
     private Map<String, String> applovinMaxIds;
     private Map<String, String> adcolonyIds;
