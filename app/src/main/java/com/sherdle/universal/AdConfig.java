@@ -19,6 +19,11 @@ public class AdConfig {
     private Map<String, String> adcolonyIds;
     private String ironsourceAppId;
 
+//////////////////////////////////////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////////////////////////////////    
+
    private AdConfig(Context context) {
         // Carregar o arquivo de configuração de anúncios
         this.adConfig = ConfigParser.getInstance(context).getAdConfig();
@@ -31,7 +36,7 @@ public class AdConfig {
         }
         return instance;
     }
-    
+
  public static synchronized AdConfig getInstance(Context context) {
         if (instance == null) {
             instance = new AdConfig(context);
@@ -114,28 +119,28 @@ public class AdConfig {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-public void setBannerAd(String bannerAd) {  
+public void setBannerAd(Map<String, String> bannerAd) {  
     this.bannerAd = bannerAd;
 }
 
-public void setInterstitialAd(String interstitialAd) {
+public void setInterstitialAd(Map<String, String> interstitialAd) {
     this.interstitialAd = interstitialAd;
 }
 
-public void setAdmobIds(String admobIds) {
+public void setAdmobIds(Map<String, String> admobIds) {
     this.admobIds = admobIds;
 }
 
-public void setApplovinMaxIds (String applovinMaxIds) {
+public void setApplovinMaxIds (Map<String, String> applovinMaxIds) {
     this.applovinMaxIds = applovinMaxIds;
 }
 
-public void setAdcolonyIds(String adcolonyIds) {
+public void setAdcolonyIds(Map<String, String> adcolonyIds) {
     this.adcolonyIds = adcolonyIds;
 }
 
-public void setIronsourceAppId(String setIronsourceAppId) {
-    this.setIronsourceAppId = setIronsourceAppId;
+public void setIronsourceAppId(Map<String, String> setIronsourceAppId) {
+    this.setIronsourceAppId = IronsourceAppId;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
