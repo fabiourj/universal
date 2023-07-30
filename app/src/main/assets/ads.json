@@ -1,0 +1,17 @@
+[
+ 
+
+  {
+  
+    "main_bannerAds": "Adcolony",
+    "main_interstitialAds": "Applovin MAX",
+    "Adcolony_appId": "your-adcolony-app-id",
+    "Adcolony_bannerZoneId": "your-adcolony-banner-zone-id",
+    "Adcolony_interstitialZoneId": "your-adcolony-interstitial-zone-id",
+    "Ironsource_appId": "your-ironsource-app-id"
+    
+  }
+
+ 
+  
+]

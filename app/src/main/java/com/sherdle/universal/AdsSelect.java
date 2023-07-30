@@ -13,9 +13,9 @@ import java.util.Map;
 public class AdsSelect {
     private static AdsSelect instance;
     private JSONObject AdsSelect;
-    private String bannerAd;
-    private String interstitialAd;
-    private String Inmobi;
+    private String bannerAds;
+    private String interstitialAds;
+   
     private String applovinMaxIds;
     private String adcolonyIds;
     private String IronsourceAppId;
@@ -46,7 +46,7 @@ public static synchronized AdsSelect getInstance(Context context) {
         return instance;
     }
    
-}
+
 
     
 
@@ -54,10 +54,8 @@ public static synchronized AdsSelect getInstance(Context context) {
         // Aqui você pode adicionar o código para inicializar as redes de anúncios
         // Você pode usar os getters para obter as informações da rede de anúncios
         // Por exemplo:
-        switch (getBannerAd()) {
-            case "Inmobi":
-                // Add initialization code for Admob banner ad
-                break;
+        switch (getBannerAds()) {
+           
             case "Applovin MAX":
                 // Add initialization code for Applovin MAX banner ad
                 break;
@@ -71,14 +69,12 @@ public static synchronized AdsSelect getInstance(Context context) {
         // ...
     }
 
-    public void showBannerAd() {
+    public void showBannerAds() {
         // Aqui você pode adicionar o código para exibir os anúncios de banner
         // Você pode usar os getters para obter as informações da rede de anúncios
         // Por exemplo:
-        switch (getBannerAd()) {
-            case "Inmobi":
-                // Add code to show Admob banner ad
-                break;
+        switch (getBannerAds()) {
+           
             case "Applovin MAX":
                 // Add code to show Applovin MAX banner ad
                 break;
@@ -92,14 +88,12 @@ public static synchronized AdsSelect getInstance(Context context) {
         // ...
     }
 
-    public void showInterstitialAd() {
+    public void showInterstitialAds() {
         // Aqui você pode adicionar o código para exibir os anúncios intersticiais
         // Você pode usar os getters para obter as informações da rede de anúncios
         // Por exemplo:
-        switch (getInterstitialAd()) {
-            case "Inmobi":
-                // Add code to show Admob interstitial ad
-                break;
+        switch (getInterstitialAds()) {
+            
             case "Applovin MAX":
                 // Add code to show Applovin MAX interstitial ad
                 break;
@@ -118,21 +112,15 @@ public static synchronized AdsSelect getInstance(Context context) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-public void setBannerAd(StringbannerAd) {  
-    this.bannerAd = bannerAd;
+public void setBannerAds(String bannerAds) {  
+    this.bannerAds = bannerAds;
 }
 
-public void setInterstitialAd(String interstitialAd) {
-    this.interstitialAd = interstitialAd;
+public void setInterstitialAds(String interstitialAds) {
+    this.interstitialAds = interstitialAds;
 }
 
-public void setInmobi(String Inmobi) {
-    this.Inmobi = Inmobi;
-}
 
-public void setApplovinMaxIds (String applovinMaxIds) {
-    this.applovinMaxIds = applovinMaxIds;
-}
 
 public void setAdcolonyIds(String adcolonyIds) {
     this.adcolonyIds = adcolonyIds;
