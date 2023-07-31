@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/filter"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="@string/filter"
+        android:textColor="@color/dim_gray"
+        android:textSize="@dimen/textsize_s" />
+
+    <ImageButton
+        android:id="@+id/compact"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/normal"
+        android:layout_toRightOf="@+id/normal"
+        android:background="?selectableItemBackground"
+        android:padding="@dimen/spacing_l"
+        android:src="@drawable/ic_action_grid_view"
+        android:tint="@color/dim_gray" />
+
+    <ImageButton
+        android:id="@+id/normal"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_centerVertical="true"
+        android:background="?selectableItemBackground"
+        android:padding="@dimen/spacing_l"
+        android:src="@drawable/ic_action_outline_view"
+        android:tint="@color/dim_gray" />
+
+</RelativeLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="preferenceScreen">
+    <PreferenceCategory
+        android:key="general"
+        android:summary="@string/settings_general_summary"
+        android:title="@string/settings_general">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="menuOpenOnStart"
+            android:summary="@string/settings_showmenu_summary"
+            android:title="@string/settings_showmenu" />
+        <ListPreference
+            android:defaultValue="16"
+            android:entries="@array/fontentries"
+            android:entryValues="@array/fontvalues"
+            android:key="fontSize"
+            android:summary="@string/settings_fontsize_summary"
+            android:title="@string/settings_fontsize" />
+        <Preference
+            android:key="notifications"
+            android:summary="@string/settings_notifications_summary"
+            android:title="@string/settings_notifications" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="other"
+        android:summary="@string/settings_other_summary"
+        android:title="@string/settings_other">
+        <Preference
+            android:key="about"
+            android:summary="@string/settings_aboutus_summary"
+            android:title="@string/settings_aboutus" />
+        <Preference
+            android:key="licenses"
+            android:summary="@string/settings_licenses_summary"
+            android:title="@string/settings_licenses" />
+        <Preference
+            android:key="rate"
+            android:summary="@string/settings_rate_summary"
+            android:title="@string/settings_rate" />
+        <Preference
+            android:key="version"
+            android:summary="@string/empty_textview"
+            android:title="@string/settings_version" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="billing"
+        android:summary="@string/settings_billing_summary"
+        android:title="@string/settings_billing">
+        <Preference
+            android:key="purchase"
+            android:summary="@string/settings_purchase_summary"
+            android:title="@string/settings_purchase" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="?dialogPreferredPadding"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/chipgroup_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="@dimen/spacing_l"
+        android:layout_marginBottom="@dimen/spacing_m"
+        android:textColor="@color/grey_dark"
+        android:id="@+id/chipgroup_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/varations_select"/>
+
+    <Button
+        android:visibility="gone"
+        android:id="@+id/cart_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_m"
+        android:layout_marginBottom="@dimen/spacing_m"
+        android:background="#000"
+        android:elevation="5dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="@string/add_to_cart"
+        android:textColor="#fff" />
+
+</LinearLayout>

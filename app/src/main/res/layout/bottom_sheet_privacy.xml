@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/spacing_l"
+        android:paddingRight="@dimen/spacing_l"
+        android:paddingTop="@dimen/spacing_xl"
+        android:paddingBottom="@dimen/spacing_xl"
+        android:text="@string/privacy_policy_header"
+        android:background="@color/grey_lighter"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+    <TextView
+        android:id="@+id/privacy_summary_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_l"
+        android:text="@string/empty_textview" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_l"
+        android:textStyle="italic"
+        android:text="@string/privacy_policy_agreement" />
+
+    <Button
+        android:id="@+id/privacy_accept_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#000"
+        android:layout_marginLeft="@dimen/spacing_l"
+        android:layout_marginRight="@dimen/spacing_l"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="@string/privacy_policy_agree_button"
+        android:textColor="#fff" />
+
+</LinearLayout>
