@@ -39,7 +39,6 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme"
-       
         tools:ignore="GoogleAppIndexingWarning">
 
         <meta-data
@@ -91,7 +90,7 @@
             android:screenOrientation="sensor"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
 
-
+ 
         <!-- Services -->
         <service
             android:name=".providers.audio.player.player.PlaybackService"
@@ -152,10 +151,10 @@
             android:exported="false"
             tools:node="remove"/>
             
-<!-- APPLOVIN -->
-        <meta-data  android:name="applovin.sdk.key"  android:value="YOUR_SDK_KEY" />
-<!-- APPLOVIN -->
-
+<!-- APPLOVIN SDK KEY -->
+        <meta-data  android:name="applovin.sdk.key"  android:value="REBy7RbCAZD_TMfvpBSERvc5UllXikpHTX7yaRZGDsM7kBo42XSLyTy2NzBTEsSxoSoz57Q_RxN47GkNW1eigJ" />
+<!-- APPLOVIN SDK KEY -->
+  
     </application>
 
     <queries>

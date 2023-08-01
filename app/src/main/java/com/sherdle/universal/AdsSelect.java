@@ -19,7 +19,32 @@ import java.net.HttpURLConnection;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class AdsSelect {
+//////////////////APPLOVIN///////////////////////////////////////////
+import com.adjust.sdk.Adjust;
+import com.adjust.sdk.AdjustAdRevenue;
+import com.adjust.sdk.AdjustConfig;
+
+
+
+import com.applovin.mediation.MaxAdViewAdListener;
+import com.applovin.mediation.ads.MaxAdView;
+import com.applovin.sdk.AppLovinAd;
+import com.applovin.sdk.AppLovinAdClickListener;
+import com.applovin.sdk.AppLovinAdDisplayListener;
+import com.applovin.sdk.AppLovinAdLoadListener;
+import com.applovin.sdk.AppLovinAdVideoPlaybackListener;
+import com.applovin.sdk.AppLovinSdkUtils;
+import com.applovin.sdk.AppLovinSdk;
+import com.applovin.mediation.MaxAd;
+import com.applovin.mediation.MaxAdListener;
+import com.applovin.mediation.MaxAdRevenueListener;
+import com.applovin.mediation.MaxError;
+import com.applovin.mediation.ads.MaxInterstitialAd;
+/////////////////////////////////////////////////////////////////////
+
+public class AdsSelect  
+        
+{
     private static AdsSelect instance;
     private JSONObject adsConfig;
     private String mainBannerAds;
@@ -29,8 +54,18 @@ public class AdsSelect {
     private String adcolonyInterstitialZoneId;
     private String ironsourceAppId;
 
+//////////////////APPLOVIN/////////////////////////////////////
+    private MaxAdView applovin_adView;
+    private MaxInterstitialAd applovin_interstitialAd;
+    private int applovin_retryAttempt;
+    //private AppLovinSdk appLovinSdk;
+
+////////////////////////////////////////////////////////////////   
 
 private AdsSelect(Context context) {
+
+
+
     // Tente carregar o arquivo ads.json remoto
     new Thread(() -> {
         try {
@@ -93,8 +128,20 @@ private AdsSelect(Context context) {
             e.printStackTrace();
         }
     }).start();
+
+///////////////////////////////APPLOVIN///////////////////////////////////
+AppLovinSdk.initializeSdk(context);
+AppLovinSdk.getInstance(context).setMediationProvider( "max" );
+//////////////////////////////////////////////////////////////////////////    
 }
 
+
+    // Método para obter a instância do SDK do AppLovin
+    /*
+    public AppLovinSdk getAppLovinSdk() {
+        return appLovinSdk;
+    }
+    */
 
     public static synchronized AdsSelect getInstance(Context context) {
         if (instance == null) {
@@ -131,9 +178,6 @@ private AdsSelect(Context context) {
     // Métodos para inicializar e exibir anúncios
     // TODO: Adicione o código para inicializar e exibir anúncios
 
-
-
-
     
 
     public void initialize_bannerAds(Context context) {
@@ -143,7 +187,10 @@ private AdsSelect(Context context) {
         switch (getMainBannerAds()) {
            
             case "Applovin MAX":
-                // Add initialization code for Applovin MAX banner ad
+               // Add initialization code for Applovin MAX banner ad
+          
+        
+
                 break;
             case "Adcolony":
                 // Add initialization code for Adcolony banner ad
@@ -174,15 +221,49 @@ private AdsSelect(Context context) {
         // ...
     }
 
-     public void initialize_InterstitialAds(Context context) {
+     public void initialize_InterstitialAds(Activity activity) {
         // Aqui você pode adicionar o código para inicializar as redes de anúncios
         // Você pode usar os getters para obter as informações da rede de anúncios
         // Por exemplo:
-        switch (getMainInterstitialAds()) {
-           
+       switch (getMainInterstitialAds()) {
             case "Applovin MAX":
-                // Add initialization code for Applovin MAX banner ad
+                String adUnitId = "YOUR_AD_UNIT_ID"; // Substitua pelo seu Ad Unit ID
+                MaxInterstitialAd applovin_interstitialAd = new MaxInterstitialAd(adUnitId, AppLovinSdk.getInstance(activity), activity);
+                applovin_interstitialAd.setListener(new MaxAdListener() {
+                    @Override
+                    public void onAdLoaded(MaxAd ad) {
+                        // Ad loaded
+                    }
+
+                    @Override
+                    public void onAdLoadFailed(String adUnitId, MaxError error) {
+                        // Ad load failed
+                    }
+
+                    @Override
+                    public void onAdDisplayFailed(MaxAd ad, MaxError error) {
+                        // Ad display failed
+                    }
+
+                    @Override
+                    public void onAdClicked(MaxAd ad) {
+                        // Ad clicked
+                    }
+                    
+                   @Override
+                    public void onAdDisplayed(final MaxAd maxAd) {}
+
+                   @Override
+                    public void onAdHidden(final MaxAd maxAd)   {
+                    // Interstitial ad is hidden. Pre-load the next ad
+                     applovin_interstitialAd.loadAd();
+                      }
+
+                    // Implement other ad listener methods as needed
+                });
+                
                 break;
+
             case "Adcolony":
                 // Add initialization code for Adcolony banner ad
                 break;
