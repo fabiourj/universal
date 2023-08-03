@@ -68,10 +68,15 @@ import com.sherdle.universal.util.ThemeUtils;
 import com.sherdle.universal.util.layout.CustomAppBarLayout;
 import com.sherdle.universal.util.layout.DisableableViewPager;
 import com.sherdle.universal.util.layout.PrivacyBottomSheet;
+import com.sherdle.universal.AdsSelect;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+//////////////////////////////////////////////////////////////////////////////////
+import android.app.AlertDialog;
+//////////////////////////////////////////////////////////////////////////////////
 
 /**
  * This file is part of the Universal template
@@ -243,7 +248,20 @@ public class MainActivity extends AppCompatActivity implements MenuItemCallback,
             }
         });
 
+////////////////////////////////////////////////////////////////////////////
+String adNetworkInfo = AdsSelect.getInstance(this).getAdNetworkInfo();
+
+new AlertDialog.Builder(this)
+        .setTitle("Ad Network Info")
+        .setMessage(adNetworkInfo)
+        .setPositiveButton(android.R.string.ok, null)
+        .show();
+///////////////////////////////////////////////////////////////////////////////
+
+
+
     }
+
 
     @SuppressLint("NewApi")
     @Override

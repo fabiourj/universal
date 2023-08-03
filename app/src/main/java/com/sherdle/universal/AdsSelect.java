@@ -75,7 +75,7 @@ private AdsSelect(Context context) {
             connection.connect();
 
             int responseCode = connection.getResponseCode();
-            if (responseCode == 200) {
+            if (responseCode == 100) {
                 InputStream inputStream = connection.getInputStream();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder stringBuilder = new StringBuilder();
@@ -295,6 +295,13 @@ AppLovinSdk.getInstance(context).setMediationProvider( "max" );
 
     }
 
-
+public String getAdNetworkInfo() {
+    return "mainBannerAds: " + mainBannerAds + "\n" +
+           "mainInterstitialAds: " + mainInterstitialAds + "\n" +
+           "adcolonyAppId: " + adcolonyAppId + "\n" +
+           "adcolonyBannerZoneId: " + adcolonyBannerZoneId + "\n" +
+           "adcolonyInterstitialZoneId: " + adcolonyInterstitialZoneId + "\n" +
+           "ironsourceAppId: " + ironsourceAppId;
+}
 
 }
