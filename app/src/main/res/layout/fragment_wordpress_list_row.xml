@@ -44,7 +44,7 @@
                 android:textDirection="locale"/>
         </RelativeLayout>
 
-        <com.sherdle.universal.util.layout.RoundedImageView
+        <com.arena.esportes.util.layout.RoundedImageView
             android:id="@+id/thumbImage"
             android:layout_width="@dimen/thumbnail_size"
             android:layout_height="@dimen/thumbnail_size"

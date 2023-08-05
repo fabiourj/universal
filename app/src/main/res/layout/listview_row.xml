@@ -12,7 +12,7 @@
         android:padding="@dimen/spacing_xl"
         android:clipToPadding="false">
 
-        <com.sherdle.universal.util.layout.RoundedImageView
+        <com.arena.esportes.util.layout.RoundedImageView
             android:id="@+id/thumbImage"
             android:layout_width="match_parent"
             android:layout_height="150dp"

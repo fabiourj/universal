@@ -21,7 +21,7 @@ licenseReport {
 android {
     compileSdkVersion 33
     defaultConfig {
-        applicationId "com.sherdle.universal"
+        applicationId "com.arena.esportes"
         minSdkVersion 21
         targetSdkVersion 33
         multiDexEnabled true
@@ -58,7 +58,7 @@ android {
     dexOptions {
         jumboMode true
     }
-    namespace 'com.sherdle.universal'
+    namespace 'com.arena.esportes'
 }
 
 

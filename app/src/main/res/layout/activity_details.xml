@@ -10,7 +10,7 @@
         android:layout_height="400dp"
         android:background="@color/myPrimaryColor" />
 
-    <com.sherdle.universal.util.layout.TrackingScrollView
+    <com.arena.esportes.util.layout.TrackingScrollView
         android:id="@+id/scroller"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -34,7 +34,7 @@
                 android:layout_height="match_parent" />
 
         </LinearLayout>
-    </com.sherdle.universal.util.layout.TrackingScrollView>
+    </com.arena.esportes.util.layout.TrackingScrollView>
 
     <View
         android:layout_width="match_parent"

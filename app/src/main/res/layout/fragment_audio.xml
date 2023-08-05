@@ -12,7 +12,7 @@
         android:visibility="visible"
         android:divider="@null" />
 
-    <com.sherdle.universal.providers.audio.ui.views.BottomRecyclerListView
+    <com.arena.esportes.providers.audio.ui.views.BottomRecyclerListView
         android:id="@+id/activity_artist_playlist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -413,7 +413,7 @@
         "title":"",
         "provider":"custom",
         "arguments":[
-          "com.sherdle.universal.SettingsFragment", "fragment"
+          "com.arena.esportes.SettingsFragment", "fragment"
         ]
       }
     ]
