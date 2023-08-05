@@ -101,7 +101,7 @@ public class Config {
 
     //The frequency in which interstitial ads are shown
     //('-1' to never show, '1' to always show, '2' to show 1 out of 2, etc)
-    public static final int INTERSTITIAL_INTERVAL = 1;
+    public static final int INTERSTITIAL_INTERVAL = 2;
     //If ads are enabled, also show them on the youtube layout
     public static final boolean ADMOB_YOUTUBE = true;
 

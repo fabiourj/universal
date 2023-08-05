@@ -37,13 +37,13 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 /////////////////////////////////////////ADMOB/////////////////////////////////////////////////////////////////////////////
-/*
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
-*/
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import com.google.android.material.appbar.AppBarLayout;
@@ -116,6 +116,12 @@ public class MainActivity extends AppCompatActivity implements MenuItemCallback,
 
     //Keep track of the interstitials we show
     private int interstitialCount = -1;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ private AdsSelect adsSelect;
+ public String mainInterstitialAds;
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
  ////////////////////////////////////////////////ADMOB/////////////////////////////////////////////////////////////
 /*
     private InterstitialAd mInterstitialAd;
@@ -235,8 +241,32 @@ public class MainActivity extends AppCompatActivity implements MenuItemCallback,
 
         applyDrawerLocks();
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+AdsSelect adsSelect = AdsSelect.getInstance(MainActivity.this);
+adsSelect.getAdNetworkInfo(new AdsSelect.OnAdsConfigLoadedListener() {
+    @Override
+    public void onAdsConfigLoaded(String adNetworkInfo) {
+     //   Log.d("MainActivity", "onAdsConfigLoaded called");
+     //   Log.d("MainActivity", "Ad network info loaded: " + adNetworkInfo);
+
+        String mainInterstitialAds = AdsSelect.getInstance(MainActivity.this).getMainInterstitialAds();
+      //  Log.d("MainActivity", "Main interstitial ads: " + mainInterstitialAds);
+       
+
+        // Move the call to initialize_InterstitialAds() here
+        if (adsSelect != null) {
+            Log.d("MainActivity", "teste2 AdsSelect instance: " + adsSelect);
+            adsSelect.initialize_InterstitialAds(MainActivity.this);          
+        } else {
+            Log.d("MainActivity", "AdsSelect instance is null");
+        }
+    }
+});
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
 AdsSelect adsSelect = AdsSelect.getInstance(MainActivity.this);
 Log.d("MainActivity", "teste2 AdsSelect instance: " + adsSelect);
 adsSelect.getAdNetworkInfo(new AdsSelect.OnAdsConfigLoadedListener() {
@@ -288,8 +318,7 @@ adsSelect.getAdNetworkInfo(new AdsSelect.OnAdsConfigLoadedListener() {
         }
     }
 });
-
-
+*/
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -342,6 +371,9 @@ adsSelect.getAdNetworkInfo(new AdsSelect.OnAdsConfigLoadedListener() {
              //   && !SettingsFragment.getIsPurchased(this)) 
                 {
 /////ADMOB///  loadInterstitial();
+
+
+ 
         }
 
         Helper.updateAndroidSecurityProvider(this);
@@ -443,7 +475,15 @@ adsSelect.getAdNetworkInfo(new AdsSelect.OnAdsConfigLoadedListener() {
             viewPager.setPagingEnabled(true);
         }
 
-      //  showInterstitial();
+      //  showInterstitial(); ////////////////////////////////
+ /////////////////////////////////////////////////////////////////////////////////////////////
+      
+     
+             if (adsSelect != null) {
+            adsSelect.show_InterstitialAds();   }  
+     
+      
+////////////////////////////////////////////////////////////////////////////////////////////     
         onTabBecomesActive(0);
     }
 
@@ -490,7 +530,15 @@ adsSelect.getAdNetworkInfo(new AdsSelect.OnAdsConfigLoadedListener() {
 
         ((CustomAppBarLayout) mToolbar.getParent()).setExpanded(true, true);
 
-     //   if (position != 0)
+        if (position != 0)
+
+
+
+    if (adsSelect != null) {
+            adsSelect.show_InterstitialAds(); }
+
+
+        
      //ADMOB showInterstitial();
 
     }

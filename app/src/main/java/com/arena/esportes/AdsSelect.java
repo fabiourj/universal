@@ -386,12 +386,14 @@ public void setInterstitialAdLoadListener(InterstitialAdLoadListener listener) {
     }
 
     public void show_InterstitialAds() {
+         Log.d("AdsSelect", "fabio2_void show_IntertitialAds called");
         // Aqui você pode adicionar o código para exibir os anúncios intersticiais
         // Você pode usar os getters para obter as informações da rede de anúncios
         // Por exemplo:
         switch (getMainInterstitialAds()) {
             
             case "Applovin MAX":
+         Log.d("AdsSelect", "fabio2_show_IntertitialAds Applovin Max called");
                 // Add code to show Applovin MAX interstitial ad
                 break;
             case "Adcolony":
