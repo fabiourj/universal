@@ -478,13 +478,45 @@ adsSelect.getAdNetworkInfo(new AdsSelect.OnAdsConfigLoadedListener() {
       //  showInterstitial(); ////////////////////////////////
  /////////////////////////////////////////////////////////////////////////////////////////////
       
-     
-             if (adsSelect != null) {
-            adsSelect.show_InterstitialAds();   }  
+     AdsSelect adsSelect = AdsSelect.getInstance(MainActivity.this);
+adsSelect.getAdNetworkInfo(new AdsSelect.OnAdsConfigLoadedListener() {
+    @Override
+    public void onAdsConfigLoaded(String adNetworkInfo) {
+        // Move the call to show_InterstitialAds() here
+         if (adsSelect != null) {
+            Log.d("MainActivity", "teste2 AdsSelect instance: " + adsSelect);
+            adsSelect.initialize_InterstitialAds(MainActivity.this);
+
+            adsSelect.setInterstitialAdLoadListener(new AdsSelect.InterstitialAdLoadListener() {
+                @Override
+                public void onInterstitialAdLoaded() {
+                    Log.d("MainActivity", "Interstitial ad loaded 1");
+                    adsSelect.show_InterstitialAds();
+                }
+
+                @Override
+                public void onInterstitialAdLoadFailed() {
+                    Log.d("MainActivity", "Interstitial ad failed to load 1");
+                }
+            });
+        } else { Log.d("MainActivity", "AdsSelect instance is null 1");
+        }
+    }
+});
+    
+ 
+
+
      
       
 ////////////////////////////////////////////////////////////////////////////////////////////     
         onTabBecomesActive(0);
+
+
+  
+
+
+
     }
 
     private void configureBottomNavigation(List<NavItem> actions) {
@@ -511,9 +543,9 @@ adsSelect.getAdNetworkInfo(new AdsSelect.OnAdsConfigLoadedListener() {
                         return false;
                     }
                 });
-    }
+     }
 
-    private void onTabBecomesActive(int position) {
+     private void onTabBecomesActive(int position) {
         Fragment fragment = adapter.getItem(position);
 
         //If fragment does not support collapse, if OS does not support collapse, or if disabled, disable collapsing toolbar
@@ -530,16 +562,36 @@ adsSelect.getAdNetworkInfo(new AdsSelect.OnAdsConfigLoadedListener() {
 
         ((CustomAppBarLayout) mToolbar.getParent()).setExpanded(true, true);
 
-        if (position != 0)
-
-
-
-    if (adsSelect != null) {
-            adsSelect.show_InterstitialAds(); }
-
-
-        
+     //   if (position != 0)        
      //ADMOB showInterstitial();
+
+AdsSelect adsSelect = AdsSelect.getInstance(MainActivity.this);
+adsSelect.getAdNetworkInfo(new AdsSelect.OnAdsConfigLoadedListener() {
+    @Override
+    public void onAdsConfigLoaded(String adNetworkInfo) {
+        // Move the call to show_InterstitialAds() here
+        if (adsSelect != null) {
+            Log.d("MainActivity", "teste2 AdsSelect instance: " + adsSelect);
+            adsSelect.initialize_InterstitialAds(MainActivity.this);
+
+            adsSelect.setInterstitialAdLoadListener(new AdsSelect.InterstitialAdLoadListener() {
+                @Override
+                public void onInterstitialAdLoaded() {
+                    Log.d("MainActivity", "Interstitial ad loaded");
+                    adsSelect.show_InterstitialAds();
+                }
+
+                @Override
+                public void onInterstitialAdLoadFailed() {
+                    Log.d("MainActivity", "Interstitial ad failed to load");
+                }
+            });
+        } else {
+            Log.d("MainActivity", "AdsSelect instance is null");
+        }
+    }
+});
+    
 
     }
 
@@ -613,8 +665,8 @@ adsSelect.getAdNetworkInfo(new AdsSelect.OnAdsConfigLoadedListener() {
     /**
      * Checks if the item is/contains a custom intent, and if that the case it will handle it.
      *
-     * @param items List of NavigationItems
-     * @return True if the item is a custom intent, in that case
+     * param items List of NavigationItems
+     * return True if the item is a custom intent, in that case
      */
     private boolean isCustomIntent(List<NavItem> items) {
         NavItem customIntentItem = null;

@@ -395,7 +395,9 @@ public void setInterstitialAdLoadListener(InterstitialAdLoadListener listener) {
             case "Applovin MAX":
          Log.d("AdsSelect", "fabio2_show_IntertitialAds Applovin Max called");
                 // Add code to show Applovin MAX interstitial ad
-                break;
+         if (applovin_interstitialAd != null && applovin_interstitialAd.isReady()) {
+            applovin_interstitialAd.showAd();} else { Log.d("AdsSelect", "Interstitial ad is not ready to show."); }
+             break;
             case "Adcolony":
                 // Add code to show Adcolony interstitial ad
                 break;
