@@ -42,6 +42,16 @@ import com.applovin.mediation.MaxError;
 import com.applovin.mediation.ads.MaxInterstitialAd;
 /////////////////////////////////////////////////////////////////////
 
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
+
+
+
+
+
+
 /////////////////////////////////////////////////////////////////////
 import java.util.concurrent.Future;
 import java.util.concurrent.ExecutorService;
@@ -60,7 +70,8 @@ public class AdsSelect      // implements  MaxAdListener, MaxAdRevenueListener
 {
 
   
-
+private Activity activity; // Add this line
+private Context context;
     private static AdsSelect instance;
     private JSONObject adsConfig;
     private String mainBannerAds;
@@ -69,6 +80,7 @@ public class AdsSelect      // implements  MaxAdListener, MaxAdRevenueListener
     private String adcolonyBannerZoneId;
     private String adcolonyInterstitialZoneId;
     private String ironsourceAppId;
+  
 
 
   public interface InterstitialAdLoadListener {
@@ -80,7 +92,7 @@ private InterstitialAdLoadListener interstitialAdLoadListener;
     private MaxAdView applovin_adView;
     private MaxInterstitialAd applovin_interstitialAd;
     private int applovin_retryAttempt;
-    //private AppLovinSdk appLovinSdk;
+    private AppLovinSdk appLovinSdk;
 
 ////////////////////////////////////////////////////////////////   
 
@@ -88,7 +100,10 @@ private InterstitialAdLoadListener interstitialAdLoadListener;
 private CountDownLatch latch;
 ////////////////////////////////////////////////////////////////////////
 
-private AdsSelect(Context context) {
+private AdsSelect(Activity activity) {
+
+  this.activity = activity;
+  this.context = activity.getApplicationContext();
 
 latch = new CountDownLatch(1);
 
@@ -163,16 +178,62 @@ latch = new CountDownLatch(1);
             }
         }
 
-        if ("Applovin MAX".equals(mainBannerAds) || "Applovin MAX".equals(mainInterstitialAds)) {
-            AppLovinSdk.initializeSdk(context);
-            AppLovinSdk.getInstance(context).setMediationProvider("max");
-        }
-    }).start();
 
-///////////////////////////////APPLOVIN///////////////////////////////////
-//AppLovinSdk.initializeSdk(context);
-//AppLovinSdk.getInstance(context).setMediationProvider( "max" );
-//////////////////////////////////////////////////////////////////////////    
+if ("Applovin MAX".equals(mainBannerAds) || "Applovin MAX".equals(mainInterstitialAds)) {
+    activity.runOnUiThread(new Runnable() {
+    @Override
+    public void run() {
+        // Iniciar AppLovin Max SDK
+       
+            Log.d("AdsSelect", "Setting mediation provider for AppLovin MAX");
+            AppLovinSdk.getInstance(activity).setMediationProvider("max");
+            Log.d("AdsSelect", "Initializing AppLovin MAX SDK");
+            AppLovinSdk.initializeSdk(activity);               
+
+        if ("Applovin MAX".equals(mainBannerAds)) {
+            // Método para inicializar banner
+            initialize_bannerAds(activity);
+        }
+
+        if ("Applovin MAX".equals(mainInterstitialAds)) {
+            // Método para inicializar intersticial
+            initialize_InterstitialAds(activity);
+        }
+    }
+});
+}
+
+
+/*
+if ("Applovin MAX".equals(mainBannerAds) || "Applovin MAX".equals(mainInterstitialAds)) {
+    activity.runOnUiThread(new Runnable() {
+        @Override
+        public void run() {
+            //iniciar Applovin Max SDK  
+            Log.d("AdsSelect", "Setting mediation provider for AppLovin MAX");
+            AppLovinSdk.getInstance(activity).setMediationProvider("max");
+            Log.d("AdsSelect", "Initializing AppLovin MAX SDK");
+            AppLovinSdk.initializeSdk(activity);
+           initialize_InterstitialAds(activity);
+
+
+
+        }
+    });
+} 
+
+*/
+                // Initialize AdMob SDK here
+                 if ("Admob".equals(mainBannerAds) || "Admob".equals(mainInterstitialAds)) {
+                MobileAds.initialize(activity, new OnInitializationCompleteListener() {
+                    @Override
+                    public void onInitializationComplete(InitializationStatus initializationStatus) {
+                        // TODO: Handle the initialization complete event
+                    } });
+                 }
+             
+
+     }).start();  
 }
 
 
@@ -182,13 +243,14 @@ latch = new CountDownLatch(1);
         return appLovinSdk;
     }
     */
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public static synchronized AdsSelect getInstance(Context context) {
-        if (instance == null) {
-            instance = new AdsSelect(context.getApplicationContext());
-        }
-        return instance;
+   public static synchronized AdsSelect getInstance(Activity activity) {
+    if (instance == null) {
+        instance = new AdsSelect(activity);
     }
+    return instance;
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -265,7 +327,7 @@ public void setInterstitialAdLoadListener(InterstitialAdLoadListener listener) {
 
     
 
-    public void initialize_bannerAds(Context context) {
+    public void initialize_bannerAds(Activity activity) {
         // Aqui você pode adicionar o código para inicializar as redes de anúncios
         // Você pode usar os getters para obter as informações da rede de anúncios
         // Por exemplo:
@@ -307,72 +369,47 @@ public void setInterstitialAdLoadListener(InterstitialAdLoadListener listener) {
     }
 
      public void initialize_InterstitialAds(Activity activity) {
-         Log.d("AdsSelect", "initialize_InterstitialAds called");
-       
-    /*  
-    String mainInterstitialAds = getMainInterstitialAds();
-    if (mainInterstitialAds == null) {
-        Log.e("AdsSelect", "Main interstitial ads is null");
-        return;
-    }   
-     */ 
+         Log.d("AdsSelect", "initialize_InterstitialAds called");       
+  
        switch (getMainInterstitialAds()) {
             case "Applovin MAX":
-                String adUnitId = "274828705fcfeabf"; // Substitua pelo seu Ad Unit ID
+                String adUnitId = "54455445454545"; // Substitua pelo seu Ad Unit ID
                 Log.d("AdsSelect", "Creating MaxInterstitialAd..."); // Log adicional
-                MaxInterstitialAd applovin_interstitialAd = new MaxInterstitialAd(adUnitId, AppLovinSdk.getInstance(activity), activity);
+                applovin_interstitialAd = new MaxInterstitialAd(adUnitId, activity);
                 Log.d("AdsSelect", "MaxInterstitialAd created"); // Log adicional
                 applovin_interstitialAd.setListener(new MaxAdListener() {                    
                     @Override
-                    public void onAdLoaded(MaxAd ad) {
-                       // Ad loaded
-  
+                    public void onAdLoaded(MaxAd ad) {                     
                        applovin_retryAttempt = 0;
-                        Log.d("AdsSelect", "Applovin MAX Interstitial ad loaded"); // Log adicional
-                     // if (interstitialAdLoadListener != null) {
-                     //      interstitialAdLoadListener.onInterstitialAdLoaded();
-                     //  }
-                       
-                       
+                        Log.d("AdsSelect", "Applovin MAX Interstitial ad loaded"); // Log adicional 
+/*
+                        if (applovin_interstitialAd.isReady()) {  applovin_interstitialAd.showAd();  }
+    else {     Log.d("AdsSelect", "Interstitial ad is not ready to show.");      }  
+*/
                     }
-
                     @Override
-                    public void onAdLoadFailed(String adUnitId, MaxError error) {
-                        // Ad load failed
+                    public void onAdLoadFailed(String adUnitId, MaxError error) {                      
                     applovin_retryAttempt++;
                     long delayMillis = TimeUnit.SECONDS.toMillis((long) Math.pow(2, Math.min(6, applovin_retryAttempt)));
                     new Handler().postDelayed(() -> applovin_interstitialAd.loadAd(), delayMillis);
-                    Log.e("AdsSelect", "Applovin MAX Interstitial ad failed to load: " + error.getMessage()); // Log adicional
-                       
-                     //   if (interstitialAdLoadListener != null) {
-                     //     interstitialAdLoadListener.onInterstitialAdLoadFailed();
-                     //   }
-
+                    Log.e("AdsSelect", "Applovin MAX Interstitial ad failed to load: " + error.getMessage()); // Log adicional                 
                     }
-
                     @Override
-                    public void onAdDisplayFailed(final MaxAd ad, final MaxError maxError) {
-                                   applovin_interstitialAd.loadAd();
-                     Log.e("AdsSelect", "Applovin MAX Interstitial ad failed to Display: "); 
-                      
-                        // Ad display failed
-                    }
-
-                    @Override
-                    public void onAdClicked(MaxAd ad) {
-                        // Ad clicked
-                    }
-                    
-                   @Override
-                    public void onAdDisplayed(final MaxAd maxAd) {}
-
-                   @Override
-                    public void onAdHidden(final MaxAd maxAd)   {
+                public void onAdDisplayFailed(final MaxAd ad, final MaxError maxError) {
+                    applovin_interstitialAd.loadAd();                           
+                }
+                @Override
+                public void onAdClicked(MaxAd ad) {            }
+                @Override
+                public void onAdDisplayed(final MaxAd maxAd) {}
+                @Override
+                public void onAdHidden(final MaxAd maxAd) {
                     // Interstitial ad is hidden. Pre-load the next ad
-                           }
-                    // Implement other ad listener methods as needed
+                    applovin_interstitialAd.loadAd();}
+
                 });
-                applovin_interstitialAd.loadAd();
+
+                applovin_interstitialAd.loadAd();              
                 break;
 
             case "Adcolony":
@@ -385,19 +422,20 @@ public void setInterstitialAdLoadListener(InterstitialAdLoadListener listener) {
         // ...
     }
 
-    public void show_InterstitialAds() {
-         Log.d("AdsSelect", "fabio2_void show_IntertitialAds called");
+ public void show_InterstitialAds() {
+    if (isAdsConfigLoaded()) {
+        Log.d("AdsSelect", "fabio2_void show_IntertitialAds called");
         // Aqui você pode adicionar o código para exibir os anúncios intersticiais
         // Você pode usar os getters para obter as informações da rede de anúncios
         // Por exemplo:
         switch (getMainInterstitialAds()) {
-            
             case "Applovin MAX":
-         Log.d("AdsSelect", "fabio2_show_IntertitialAds Applovin Max called");
-                // Add code to show Applovin MAX interstitial ad
-         if (applovin_interstitialAd != null && applovin_interstitialAd.isReady()) {
-            applovin_interstitialAd.showAd();} else { Log.d("AdsSelect", "Interstitial ad is not ready to show."); }
-             break;
+                if (applovin_interstitialAd.isReady()) {
+                    applovin_interstitialAd.showAd();
+                } else {
+                    Log.d("AdsSelect", "Interstitial ad is not ready to show.");
+                }
+                break;
             case "Adcolony":
                 // Add code to show Adcolony interstitial ad
                 break;
@@ -405,10 +443,37 @@ public void setInterstitialAdLoadListener(InterstitialAdLoadListener listener) {
                 // Add code to show Ironsource interstitial ad
                 break;
         }
-        
-
-
+    } else {
+        // Aguarde até que a configuração dos anúncios seja carregada
+        getAdNetworkInfo(new OnAdsConfigLoadedListener() {
+            @Override
+            public void onAdsConfigLoaded(String adNetworkInfo) {
+                show_InterstitialAds(); // Chama o método novamente após a configuração ser carregada
+            }
+        });
     }
+}
+
+private boolean isAdsConfigLoaded() {
+    // Verifique se a configuração dos anúncios está carregada
+    // Você pode ajustar essa lógica de acordo com suas necessidades
+    return mainInterstitialAds != null;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+    public void onDestroy() {  this.activity = null;}
+////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////// 
+ /*  
+    @Override
+protected void onDestroy() {
+    super.onDestroy();
+    adsSelect.onDestroy();
+}
+*/
+///////////////////////////////////////////////////////////////////////////////////////////
 
 
 }

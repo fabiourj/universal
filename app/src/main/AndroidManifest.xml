@@ -43,7 +43,7 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/admob_app_id"/>
+            android:value="ca-app-pub-3940256099942544~3347511713"/>
 
         <!-- Activities  tools:replace="android:icon" -->
         <activity
@@ -151,8 +151,10 @@
             android:exported="false"
             tools:node="remove"/>
             
+
+
 <!-- APPLOVIN SDK KEY -->
-        <meta-data  android:name="applovin.sdk.key"  android:value="REBy7RbCAZD_TMfvpBSERvc5UllXikpHTX7yaRZGDsM7kBo42XSLyTy2NzBTEsSxoSoz57Q_RxN47GkNW1eigJ" />
+        <meta-data  android:name="applovin.sdk.key"  android:value="" />
 <!-- APPLOVIN SDK KEY -->
   
     </application>

@@ -12,6 +12,11 @@ convert ic_launcher.webp     -resize 192x192\>       app/src/main/res/mipmap-xhd
 convert ic_launcher.webp     -resize 192x192\>       app/src/main/res/mipmap-xxhdpi/ic_launcher.webp 
 convert ic_launcher.webp     -resize 192x192\>       app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp      
 
+cp ic_foreground.webp              app/src/main/res/mipmap-xxxhdpi/ic_foreground.webp 
+cp ic_foreground.webp              app/src/main/res/mipmap-xxhdpi/ic_foreground.webp
+cp ic_foreground.webp              app/src/main/res/mipmap-xhdpi/ic_foreground.webp
+cp ic_foreground.webp              app/src/main/res/mipmap-hdpi/ic_foreground.webp
+cp ic_foreground.webp              app/src/main/res/mipmap-mdpi/ic_foreground.webp
 
  
 

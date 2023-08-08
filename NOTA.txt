@@ -1,4 +1,29 @@
 
 APPLOVIN:
-universal_intersticial a7378053d07a6931
-universal_banner       433c7ceaaa4415e7
+
+
+
+
+
+Um vazamento de memória ocorre quando objetos são armazenados na memória, mas não podem ser acessados pelo código em execução. No Android, isso geralmente ocorre quando você mantém uma referência de longa duração a um objeto de contexto, como uma Activity ou View, que tem um ciclo de vida mais curto.
+
+Por exemplo, se você mantém uma referência estática a uma Activity (como você está fazendo na classe AdsSelect), essa Activity não pode ser coletada como lixo mesmo depois de ser destruída (por exemplo, quando o usuário sai da Activity ou gira o dispositivo), porque a referência estática ainda está apontando para ela. Isso é um vazamento de memória.
+
+Vazamentos de memória podem ser problemáticos porque consomem memória que seu aplicativo poderia estar usando para outras coisas. Se o seu aplicativo vazar muita memória, ele pode acabar ficando sem memória e ser encerrado.
+
+Para evitar vazamentos de memória, é uma boa prática não manter referências de longa duração a objetos de contexto com ciclos de vida mais curtos. Em vez disso, você pode usar um ApplicationContext, que tem um ciclo de vida que coincide com o ciclo de vida do aplicativo. Você pode obter o ApplicationContext chamando getApplicationContext() em uma Activity ou Context.
+
+No seu caso, você pode evitar um possível vazamento de memória alterando o construtor da classe AdsSelect para aceitar um ApplicationContext em vez de uma Activity. Aqui está como você pode fazer isso:
+
+java
+Copy code
+private AdsSelect(Context context) {
+    this.context = context.getApplicationContext(); // Use ApplicationContext
+
+    // Rest of your code...
+}
+E quando você obtém a instância de AdsSelect, você passa o ApplicationContext:
+
+java
+Copy code
+AdsSelect.getInstance(getApplicationContext());

@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements MenuItemCallback,
     private int interstitialCount = -1;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- private AdsSelect adsSelect;
+  private AdsSelect adsSelect;
  public String mainInterstitialAds;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -242,139 +242,12 @@ public class MainActivity extends AppCompatActivity implements MenuItemCallback,
         applyDrawerLocks();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-AdsSelect adsSelect = AdsSelect.getInstance(MainActivity.this);
-adsSelect.getAdNetworkInfo(new AdsSelect.OnAdsConfigLoadedListener() {
-    @Override
-    public void onAdsConfigLoaded(String adNetworkInfo) {
-     //   Log.d("MainActivity", "onAdsConfigLoaded called");
-     //   Log.d("MainActivity", "Ad network info loaded: " + adNetworkInfo);
-
-        String mainInterstitialAds = AdsSelect.getInstance(MainActivity.this).getMainInterstitialAds();
-      //  Log.d("MainActivity", "Main interstitial ads: " + mainInterstitialAds);
-       
-
-        // Move the call to initialize_InterstitialAds() here
-        if (adsSelect != null) {
-            Log.d("MainActivity", "teste2 AdsSelect instance: " + adsSelect);
-            adsSelect.initialize_InterstitialAds(MainActivity.this);          
-        } else {
-            Log.d("MainActivity", "AdsSelect instance is null");
-        }
-    }
-});
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-/*
-AdsSelect adsSelect = AdsSelect.getInstance(MainActivity.this);
-Log.d("MainActivity", "teste2 AdsSelect instance: " + adsSelect);
-adsSelect.getAdNetworkInfo(new AdsSelect.OnAdsConfigLoadedListener() {
-    @Override
-    public void onAdsConfigLoaded(String adNetworkInfo) {
-        Log.d("MainActivity", "onAdsConfigLoaded called");
-        Log.d("MainActivity", "Ad network info loaded: " + adNetworkInfo);
-
-        String mainInterstitialAds = AdsSelect.getInstance(MainActivity.this).getMainInterstitialAds();
-        Log.d("MainActivity", "Main interstitial ads: " + mainInterstitialAds);
-
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (!isFinishing()) {
-                    AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-                    alertDialog.setTitle(": " + mainInterstitialAds);
-                    alertDialog.setMessage(": " + mainInterstitialAds);
-                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            });
-                    alertDialog.show();
-                }
-            }
-        });
-
-        // Move the call to initialize_InterstitialAds() here
-        if (adsSelect != null) {
-            Log.d("MainActivity", "teste2 AdsSelect instance: " + adsSelect);
-            adsSelect.initialize_InterstitialAds(MainActivity.this);
-
-            adsSelect.setInterstitialAdLoadListener(new AdsSelect.InterstitialAdLoadListener() {
-                @Override
-                public void onInterstitialAdLoaded() {
-                    Log.d("MainActivity", "Interstitial ad loaded");
-                    adsSelect.show_InterstitialAds();
-                }
-
-                @Override
-                public void onInterstitialAdLoadFailed() {
-                    Log.d("MainActivity", "Interstitial ad failed to load");
-                }
-            });
-        } else {
-            Log.d("MainActivity", "AdsSelect instance is null");
-        }
-    }
-});
-*/
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-/*
-AdsSelect adsSelect = AdsSelect.getInstance(this);
-Log.d("MainActivity", "AdsSelect instance: " + adsSelect);
-adsSelect.getAdNetworkInfo(new AdsSelect.OnAdsConfigLoadedListener() {
-    @Override
-    public void onAdsConfigLoaded(String adNetworkInfo) {
-        Log.d("MainActivity", "onAdsConfigLoaded called");
-        Log.d("MainActivity", "Ad network info loaded: " + adNetworkInfo);
-
-        String mainInterstitialAds = AdsSelect.getInstance(MainActivity.this).getMainInterstitialAds();
-        Log.d("MainActivity", "Main banner ads: " + mainInterstitialAds);
-
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (!isFinishing()) {
-                    AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-                    alertDialog.setTitle(": " + mainInterstitialAds);
-                    //alertDialog.setMessage(": " + mainInterstitialAds);
-                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            });
-                    alertDialog.show();
-                }
-            }
-        });
-    }
-});
-*/
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
+ adsSelect = AdsSelect.getInstance(this);
+//AdsSelect adsSelect = AdsSelect.getInstance(MainActivity.this);
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
-
-        //Ads
-///////////////////////////////////////////ADMOB/////////////////////////////////////////////////////////////////////
-/*
-        Helper.admobLoader(this, findViewById(R.id.adView));
-*/
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        if (getResources().getString(R.string.admob_interstitial_id).length() > 0
-                && Config.INTERSTITIAL_INTERVAL > 0)
-             //   && !SettingsFragment.getIsPurchased(this)) 
-                {
-/////ADMOB///  loadInterstitial();
-
-
- 
-        }
 
         Helper.updateAndroidSecurityProvider(this);
         PrivacyBottomSheet.showPrivacySheetIfNeeded(this);
@@ -393,9 +266,7 @@ adsSelect.getAdNetworkInfo(new AdsSelect.OnAdsConfigLoadedListener() {
             }
         });
 
-////////////////////////////////////////////////////////////////////////////
 
-///////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -475,47 +346,10 @@ adsSelect.getAdNetworkInfo(new AdsSelect.OnAdsConfigLoadedListener() {
             viewPager.setPagingEnabled(true);
         }
 
-      //  showInterstitial(); ////////////////////////////////
- /////////////////////////////////////////////////////////////////////////////////////////////
-      
-     AdsSelect adsSelect = AdsSelect.getInstance(MainActivity.this);
-adsSelect.getAdNetworkInfo(new AdsSelect.OnAdsConfigLoadedListener() {
-    @Override
-    public void onAdsConfigLoaded(String adNetworkInfo) {
-        // Move the call to show_InterstitialAds() here
-         if (adsSelect != null) {
-            Log.d("MainActivity", "teste2 AdsSelect instance: " + adsSelect);
-            adsSelect.initialize_InterstitialAds(MainActivity.this);
-
-            adsSelect.setInterstitialAdLoadListener(new AdsSelect.InterstitialAdLoadListener() {
-                @Override
-                public void onInterstitialAdLoaded() {
-                    Log.d("MainActivity", "Interstitial ad loaded 1");
-                    adsSelect.show_InterstitialAds();
-                }
-
-                @Override
-                public void onInterstitialAdLoadFailed() {
-                    Log.d("MainActivity", "Interstitial ad failed to load 1");
-                }
-            });
-        } else { Log.d("MainActivity", "AdsSelect instance is null 1");
-        }
-    }
-});
-    
- 
-
-
-     
-      
+//////////////////////////////////////////////////////////////////////////////////////////
+//adsSelect.show_InterstitialAds();      
 ////////////////////////////////////////////////////////////////////////////////////////////     
         onTabBecomesActive(0);
-
-
-  
-
-
 
     }
 
@@ -562,105 +396,21 @@ adsSelect.getAdNetworkInfo(new AdsSelect.OnAdsConfigLoadedListener() {
 
         ((CustomAppBarLayout) mToolbar.getParent()).setExpanded(true, true);
 
-     //   if (position != 0)        
-     //ADMOB showInterstitial();
+////////////////////////////////////////////////////////////////////////////////////////////////
 
-AdsSelect adsSelect = AdsSelect.getInstance(MainActivity.this);
-adsSelect.getAdNetworkInfo(new AdsSelect.OnAdsConfigLoadedListener() {
-    @Override
-    public void onAdsConfigLoaded(String adNetworkInfo) {
-        // Move the call to show_InterstitialAds() here
-        if (adsSelect != null) {
-            Log.d("MainActivity", "teste2 AdsSelect instance: " + adsSelect);
-            adsSelect.initialize_InterstitialAds(MainActivity.this);
+if (position != 0)   
+adsSelect.show_InterstitialAds();
 
-            adsSelect.setInterstitialAdLoadListener(new AdsSelect.InterstitialAdLoadListener() {
-                @Override
-                public void onInterstitialAdLoaded() {
-                    Log.d("MainActivity", "Interstitial ad loaded");
-                    adsSelect.show_InterstitialAds();
-                }
+///////////////////////////////////////////////////////////////////////////////////////////////
+                     
 
-                @Override
-                public void onInterstitialAdLoadFailed() {
-                    Log.d("MainActivity", "Interstitial ad failed to load");
-                }
-            });
-        } else {
-            Log.d("MainActivity", "AdsSelect instance is null");
-        }
-    }
-});
+
     
 
+
     }
 
-    /**
-     * Show an interstitial ad ///////////////////////////ADMOB/////////////////////////////////////
-     */
 
-/////ADMOB///////////////////////////////////////////////////////////////////////////////////////////
-/*
-
-    public void showInterstitial() {
-        if (interstitialCount == (Config.INTERSTITIAL_INTERVAL - 1)) {
-  
-/////ADMOB///  if (mInterstitialAd != null) {
-/////ADMOB///     mInterstitialAd.show(this);
-
-      mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback(){
-                    @Override
-                    public void onAdDismissedFullScreenContent() {
-                        // Called when fullscreen content is dismissed.
-                        Log.d("TAG", "The ad was dismissed.");
-
-                        //Load a new ad
-                        loadInterstitial();
-                    }
-
-                    @Override
-                    public void onAdFailedToShowFullScreenContent(AdError adError) {
-                        // Called when fullscreen content failed to show.
-                        Log.d("TAG", "The ad failed to show.");
-                    }
-
-                    @Override
-                    public void onAdShowedFullScreenContent() {
-                        // Called when fullscreen content is shown.
-                        mInterstitialAd = null;
-                        Log.d("TAG", "The ad was shown.");
-                    }
-                });
-            }
- /////////////////////////////////////////////////////////////////////////////////////////////////           
-
-            interstitialCount = 0;
-        } else {
-            interstitialCount++;
-        }
-      
-    }
-*/
- //////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-
-////////////////////////////////////////////////////////////////////ADMOB//////////////////////////////////////////
-/* 
-    private void loadInterstitial(){
-
-       
-        AdRequest adRequestInter = new AdRequest.Builder().build();
-        InterstitialAdLoadCallback callback = new InterstitialAdLoadCallback() {
-            @Override
-            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                super.onAdLoaded(interstitialAd);
-                mInterstitialAd = interstitialAd;
-            }
-        };
-        InterstitialAd.load(this, getResources().getString(R.string.admob_interstitial_id), adRequestInter, callback);
-    
-    }
- */       
- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 
     /**
      * Checks if the item is/contains a custom intent, and if that the case it will handle it.
@@ -890,4 +640,11 @@ adsSelect.getAdNetworkInfo(new AdsSelect.OnAdsConfigLoadedListener() {
         ((CustomScrollingViewBehavior) params.getBehavior()).setDynamicElevation(enabled);
         mToolbar.requestLayout();
     }
+ 
+    @Override
+protected void onDestroy() {
+    super.onDestroy();
+    adsSelect.onDestroy();
+}
+
 }
